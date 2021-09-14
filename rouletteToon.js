@@ -42,21 +42,27 @@ function sumSum(data1, data2) {
         }
     
     }
+
     // 입력값이 메세지에 존재할때 
     function textname(data1, data2) {
         const arr = []
-        for (i of data2){
-            const as = hihi(data1, i)
-            arr.push(as)
+            for (i of data2){
+                try{
+                const as = hihi(data1, i)
+                
+                arr.push(as)
+                } catch {
+                    
+                }
+            }
+            const aar1 = arr.filter(
+                (element, i) => element !== undefined
+                );
+            return aar1
         }
-    const aar1 = arr.filter(
-        (element, i) => element !== undefined
-      );
-    return aar1
-    }
     // 입력값이 메세지에 존재할때 
     function hihi (data1,data2) {
-        if (Object.entries(data2).flat(Infinity)[9].replace("\"", "").split(' ')[0] == `${data1}`)
+        if (Object.entries(data2).flat(Infinity)[9].split(' - ')[0] == `${data1}`)
         return data2
     }
 
@@ -99,12 +105,14 @@ const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
 
 function csvToJSON(csv_string){
-const rows = csv_string.split("\r\n"); 
+const rows = csv_string.replaceAll("\"", "")
+const rowss = rows.replaceAll("\r", "")
+const rowsss = rowss.split("\n")
 const jsonArray = []; 
-const header = rows[0].split(","); 
-for(let i = 1; i < rows.length; i++){ 
+const header = rowsss[0].split(","); 
+for(let i = 1; i < rowsss.length; i++){ 
 let obj = {}; 
-let row = rows[i].split(","); 
+let row = rowsss[i].split(","); 
 for(let j=0; j < header.length; j++){ obj[header[j]] = row[j]; } 
 jsonArray.push(obj); }
 return jsonArray; 
@@ -122,6 +130,7 @@ reader.onload = function (e) {
     const bdata = textname(nameText, data)
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
+
     document.write(`<link rel="stylesheet" href="style.css">`);
     document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
     document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
