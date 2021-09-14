@@ -122,7 +122,9 @@ reader.onload = function (e) {
     const bdata = textname(nameText, data)
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
-    console.log(bdata)
+    document.write(`<link rel="stylesheet" href="style.css">`);
+    document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
+    document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
 
     document.write(`<div class="wrapper2">`)
     document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('atta') );">`);
@@ -138,9 +140,6 @@ reader.onload = function (e) {
     mm(bdata)
     document.write('<br> <br> <br>')
     
-    document.write(`<link rel="stylesheet" href="style.css">`);
-    document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
-    document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
 };
 
 reader.readAsText(input);
