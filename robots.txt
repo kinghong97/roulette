@@ -1,2 +1,3 @@
 User-agent: *
 Allow:/
+Sitemap: https://troulette.netlify.app/sitemap.xml
