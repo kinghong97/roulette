@@ -1,0 +1,152 @@
+table {
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    font-size: small;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #444444;
+    border-left: 1px solid #444444;
+    border-right: 1px solid #444444;
+  }
+  th {
+    background-color: #ffe6ea;
+  }
+  td {
+    background-color: #fffbfb;
+    
+  }
+.all {
+    font-weight: bold;
+}
+html {
+    height: 100%;
+  }
+  
+  body {
+    background-color: #a970ff4d;
+    height: 100%;
+  }
+  
+  .wrapper {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper .file-upload {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid #ffffff;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, #a970ff4d 50%, #ffffff 50%);
+    background-size: 100% 200%;
+    transition: all 2s;
+    color: #ffffff;
+    font-size: 70px;
+  }
+  .wrapper .file-upload input[type=file] {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .wrapper .file-upload:hover {
+    background-position: 0 -100%;
+    color: #a970ff4d;
+  }
+  .wrapper2 {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .wrapper3 {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .button {
+    transition-duration: 1s;
+    color: #a970ff9d;
+    padding: 32px 16px;
+    border-radius: 10px;
+    font-size: 24px;
+    border: 4px solid #a970ff9d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+  
+  .button:hover {
+    background-color: #a970ff9d;
+    color: #ffffff;
+  }
+  i {
+    font-style:normal;
+    
+}
+
+h3 {
+    color: white;
+    border: #a970ff9d;
+    padding-left: 50px;
+    padding-top: 40px;
+    font-size: xx-large;
+}
+
+#nametext {
+  background-color: #ffffff;
+  color: #a970ff9d;
+  border: 2px solid #a970ff9d;
+  font-size: 30px;
+  width: 350px;
+  FONT-WEIGHT: 500;
+  padding: 15px;
+  padding-left: 20px;
+  border-radius: 10px;
+}
+#nametext:focus-visible {
+  outline:0cm
+}
+/* IE9 이하를 위한 css */
+.placeholder {
+  color:  #a970ff9d;
+}
+/* IE10 이상을 위한 css */
+input::placeholder {
+  color: #a970ff9d;
+  opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
+}
+input::-webkit-input-placeholder {
+  color: #a970ff9d;
+}
+/* IE */
+input:-ms-input-placeholder {
+  color: #a970ff9d;
+}
+/* Firefox */
+input:-mos-input-placeholder {
+  color: #a970ff9d;
+}
