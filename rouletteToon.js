@@ -61,7 +61,7 @@ function sumSum(data1, data2) {
         const countmess = count(flatmess, uniqmess)
     // 메세지 카운트 내림차순
         const sortcount = Object.entries(countmess)
-        .sort(([, a], [, b]) => b - a)
+        .sort(([, a], [, b]) => a - b)
         .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
         const allacc = acc.length
         
@@ -228,7 +228,7 @@ function mm(data) {
 
     // 메세지 카운트 내림차순
     const sortcount = Object.entries(countmess)
-    .sort(([, a], [, b]) => b - a)
+    .sort(([, a], [, b]) => a - b)
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
     const sum = []
     document.write('<table id="attaat" class="csvtable">')
