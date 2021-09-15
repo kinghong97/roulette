@@ -8,20 +8,32 @@ table {
   th, td {
     border-bottom: 1px solid #444444;
     padding: 10px;
-    text-align: center;
     border-top: 1px solid #444444;
     border-left: 1px solid #444444;
     border-right: 1px solid #444444;
   }
   th {
     background-color: #ffe6ea;
+    text-align: center;
   }
   td {
     background-color: #fffbfb;
+    text-align: left;
     
   }
-.all {
+  .tdValue{
+   text-align: center;
+   
+  }
+  .tdKey {
+    padding-left: 15px;
+  }
+  td:hover {
+    background-color: #fcffe6;
+  }
+  .all {
     font-weight: bold;
+    text-align: center;
 }
 html {
     height: 100%;
@@ -150,3 +162,5 @@ input:-ms-input-placeholder {
 input:-mos-input-placeholder {
   color: #a970ff9d;
 }
+
+

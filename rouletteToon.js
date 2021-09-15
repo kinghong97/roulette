@@ -29,20 +29,47 @@ function flat(data) {
 }
 //data1 유니크배열 data2이름메세지배열
 function sumSum(data1, data2) {
-    for(i of data1){
-        const acc = data2.filter(function(data){ 
+
+    // 많이 뽑은 순으로 정렬하려는 나의 노력. ㅠ 결국은 메세지순서만 바꾸면 되는 것.
+    const arr = []
+
+        for(i of data1){
+            const ac = data2.filter(function(data){ 
+                return data.Account == `${i}`})
+            arr.push(ac)
+            }
+
+    const arr1 = arr.sort((x,y)=>Object(y).length-Object(x).length)
+
+    const arr2 = []
+
+    for (j of arr1){
+        for (i of j) {
+        arr2.push(i)
+    } }
+    const acount1 = cutAccount(arr2)
+    const aa1 = uniq(flat(acount1))
+
+    for(i of aa1){
+        const acc = arr2.filter(function(data){ 
             return data.Account == `${i}`})
+
         const acname = acc.map((obj) => Object.values(obj)[2]);
         const acacc = acc.map((obj) => Object.values(obj)[1]);
         const flatmess = flat(cutMessage(acc))
         const uniqmess = uniq(flatmess)
         const countmess = count(flatmess, uniqmess)
+    // 메세지 카운트 내림차순
+        const sortcount = Object.entries(countmess)
+        .sort(([, a], [, b]) => b - a)
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
         const allacc = acc.length
-        createTable(acname[0], acacc[0], countmess, allacc)
-        }
-    
+        
+        createTable(acname[0], acacc[0], sortcount, allacc)
     }
 
+    
+}
     // 입력값이 메세지에 존재할때 
     function textname(data1, data2) {
         const arr = []
@@ -82,10 +109,10 @@ function createTable(data1, data2, data3, data4) {
     document.write('<tbody>')
     for (const [key, value] of Object.entries(data3)) {
         document.write('<tr>')
-        document.write('<td>')
+        document.write('<td class="tdKey">')
         document.write(`${key.replace("\"", "")}`)
         document.write('</td>')
-        document.write('<td>')
+        document.write('<td class="tdValue">')
         document.write(`${value}`)
         document.write('</td>')
         document.write('</tr>')
@@ -94,7 +121,7 @@ function createTable(data1, data2, data3, data4) {
     document.write('<td class="all">')
     document.write(`All`)
     document.write('</td>')
-    document.write('<td>')
+    document.write('<td class="tdValue">')
     document.write(`${data4}`)
     document.write('</td>')
     document.write('</tr>')
@@ -130,7 +157,6 @@ reader.onload = function (e) {
     const bdata = textname(nameText, data)
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
-
     document.write(`<link rel="stylesheet" href="style.css">`);
     document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
     document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
@@ -199,12 +225,17 @@ function mm(data) {
     const flatmess = flat(cutMessage(data))
     const uniqmess = uniq(flatmess)
     const countmess = count(flatmess, uniqmess)
+
+    // 메세지 카운트 내림차순
+    const sortcount = Object.entries(countmess)
+    .sort(([, a], [, b]) => b - a)
+    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
     const sum = []
     document.write('<table id="attaat" class="csvtable">')
     document.write('<thead>')
     document.write('<tr>')
     document.write('<th>')
-    document.write(`룰렛 목록`)
+    document.write(`목록`)
     document.write('</th>')
     document.write('<th>')
     document.write(`개수`)
@@ -215,18 +246,18 @@ function mm(data) {
     document.write('</tr>')
     document.write('</thead>')
     document.write('<tbody>')
-    for (const [key, value] of Object.entries(countmess)) {
+    for (const [key, value] of Object.entries(sortcount)) {
         const sd = String(value/flatmess.length*100)
         const asd = sd.substring(0, 4)
         const s = Number(asd)
         document.write('<tr>')
-        document.write('<td>')
+        document.write('<td class="tdKey">')
         document.write(`${key.replace("\"", "")}`)
         document.write('</td>')
-        document.write('<td>')
+        document.write('<td class="tdValue">')
         document.write(`${value}`)
         document.write('</td>')
-        document.write('<td>')
+        document.write('<td class="tdValue">')
         document.write(`${asd} %`)
         document.write('</td>')
         document.write('</tr>')
@@ -236,10 +267,10 @@ function mm(data) {
     document.write('<td class="all">')
     document.write(`All`)
     document.write('</td>')
-    document.write('<td>')
+    document.write('<td class="tdValue">')
     document.write(`${flatmess.length}`)
     document.write('</td>')
-    document.write('<td>')
+    document.write('<td class="tdValue">')
     const ssum = sum.reduce((a,b) => (a+b));
     const ssum1 = String(ssum).substring(0, 4)
     document.write(`${ssum1} %`)
