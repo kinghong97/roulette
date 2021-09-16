@@ -197,3 +197,12 @@ input:-mos-input-placeholder {
 .navbar-light .navbar-nav .nav-link:hover {
   color: rgb(85 94 101 / 58%);
 }
+.nav-link {
+  font-size: 1.2rem;
+}
+.navbar-light .navbar-toggler:focus-visible {
+  outline:0cm
+}
+.navbar-light .navbar-toggler {
+  color: #ffffff;
+}
