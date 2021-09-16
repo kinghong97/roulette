@@ -158,9 +158,34 @@ reader.onload = function (e) {
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
     document.write(`<title>투네이션 룰렛 결산하기</title>`);
+    document.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    `);
     document.write(`<link rel="stylesheet" href="style.css">`);
     document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
     document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
+    document.write(`<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+  `);
+
+    document.write(`<nav class="navbar navbar-expand-lg navbar-light fw-bold">
+    <div class="container-fluid">
+      <a class="navbar-brand navpd" href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"  href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/twip">트윕 룰렛 결산하기</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>`);
 
     document.write(`<div class="wrapper2">`)
     document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('atta') );">`);

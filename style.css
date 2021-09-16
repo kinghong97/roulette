@@ -17,7 +17,7 @@ table {
     text-align: center;
   }
   td {
-    background-color: #fffbfb;
+    background-color: #ffffff;
     text-align: left;
     
   }
@@ -40,7 +40,7 @@ html {
   }
   
   body {
-    background-color: #a970ff4d;
+    background-color: #70c6ff4d;
     height: 100%;
   }
   
@@ -82,7 +82,7 @@ html {
   }
   .wrapper2 {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,7 +94,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 70px;
   }
   .button {
     transition-duration: 1s;
@@ -133,10 +133,10 @@ h3 {
   color: #a970ff9d;
   border: 2px solid #a970ff9d;
   font-size: 30px;
-  width: 350px;
+  width: 400px;
   FONT-WEIGHT: 500;
   padding: 15px;
-  padding-left: 20px;
+  padding-left: 25px;
   border-radius: 10px;
 }
 #nametext:focus-visible {
@@ -164,3 +164,36 @@ input:-mos-input-placeholder {
 }
 
 
+.navpd {
+  padding-top: 2%;
+  padding-left: 3%;
+  font-size: xx-large;
+  color: white;
+  border: #a970ff9d;
+}
+
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 2.25rem;
+}
+
+.navbar-nav .nav-link {
+  padding-left: 4%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+.navbar-nav{
+  padding-top: 3%;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: rgb(85 94 101 / 58%);
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgb(85 94 101 / 58%);
+}
