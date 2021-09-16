@@ -157,6 +157,7 @@ reader.onload = function (e) {
     const bdata = textname(nameText, data)
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
+    document.write(`<title>투네이션 룰렛 결산하기</title>`);
     document.write(`<link rel="stylesheet" href="style.css">`);
     document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
     document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
