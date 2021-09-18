@@ -9,6 +9,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
     <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -34,23 +41,24 @@
       </div>
     </div>
   </nav>
-  <div class="wrapper">
-  <h1>아직 트윕 CSV파일 구하지 못해서 준비중~</h1>
+  <div >
+    <h2 class="h2text">준비중~</h2>
+    </div>
 
-</div>
 <!-- <div class="wrapper">
   <div class="file-upload">
     <input type="file" id="csvFile" accept=".csv" />
     <i>CSV</i>
   </div>
 </div>
-<div>
-</div>
-</div>
+<div >
+  <h2 class="h2text">룰렛 돌린 날짜를 지정해 주세요</h2>
+  </div>
 <div>
 <form id="myForm">
     <div class="wrapper2">
-    <input type="text" id="nametext" placeholder="룰렛이름을 입력해주세요" required>
+      <input type="text" name="daterange" id="daydate" />
+
     </div>
     <div class="wrapper3">
       <input class= "button" type="submit" value=" 결산하기 " />
@@ -61,7 +69,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
-  <script src="rouletteToon.js"></script>  
+  <script src="rouletteTwip.js"></script>  
     <script>
     </script>
 </body>

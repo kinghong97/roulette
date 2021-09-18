@@ -133,11 +133,31 @@ h3 {
   color: #a970ff9d;
   border: 2px solid #a970ff9d;
   font-size: 30px;
-  width: 400px;
+  width: 395px;
   FONT-WEIGHT: 500;
   padding: 15px;
   padding-left: 25px;
   border-radius: 10px;
+}
+#daydate {
+  background-color: #ffffff;
+  color: #a970ff9d;
+  border: 2px solid #a970ff9d;
+  font-size: 25px;
+  width: 330px;
+  FONT-WEIGHT: 400;
+  padding: 10px;
+  padding-left: 21px;
+  border-radius: 10px;
+  margin-bottom: 2%;
+}
+.wrapper4{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
 }
 #nametext:focus-visible {
   outline:0cm
@@ -205,4 +225,12 @@ input:-mos-input-placeholder {
 }
 .navbar-light .navbar-toggler {
   color: #ffffff;
+}
+
+.h2text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a970ff9d;
+  font-size: 20px;
 }
