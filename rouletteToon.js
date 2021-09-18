@@ -398,5 +398,6 @@ $('#daydate').daterangepicker({
         ],
         "firstDay": 1
     },
-
+    "opens": "center",
+    "drops": "up"
 })
