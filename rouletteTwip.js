@@ -1,10 +1,10 @@
 // 이름
 function cutAccount(data) {
-    return JSON.stringify(data, ['Account'])
+    return JSON.stringify(data, ['트위치ID'])
 }
 // 메세지
 function cutMessage(data) {
-    return JSON.stringify(data, ['Message'])
+    return JSON.stringify(data, ['후원메시지'])
 }
 // 제이슨을 어레이안에 어레이로
 function toArray(data) {
@@ -27,119 +27,151 @@ function count(data1, data2) {
 function flat(data) {
     return toArray(data).flat(Infinity)
 }
-//data1 유니크배열 data2이름메세지배열
-function sumSum(data1, data2, data3) {
-    const arr3 = []
-    const arr4 = []
-    
-// 날짜로 거르기
-for(i of data3){
-    const ac = data2.filter(function(data){ 
-        return data.Time.split(" ")[0] == `${i}`})
-        arr3.push(ac)
+
+function uniqmsg(data) {
+    return uniq(flat(cutMessage(data)))
+}
+
+function makecheck(data) {
+    for (i of data) {
+        document.getElementById("checktext1").innerHTML +=  `<input id="checkboxbox" name="check" type="checkbox" value="${i}">${i} <br />`;
     }
-    for (j of arr3){
-        for (i of j) {
-        arr4.push(i)
-    } }
-    // 많이 뽑은 순으로 정렬하려는 나의 노력. ㅠ 결국은 메세지순서만 바꾸면 되는 것.
-    const arr = []
+}
 
-        for(i of data1){
-            const ac = arr4.filter(function(data){ 
-                return data.Account == `${i}`})
-            arr.push(ac)
-            }
-
-    const arr1 = arr.sort((x,y)=>Object(y).length-Object(x).length)
-
+// 날짜와 가격으로 거르기 data1 가격 data2 전체배열 data3 날짜
+function dateprice(data1, data2, data3) {
+    const arr1 = []
     const arr2 = []
 
+    for(i of data3){
+        const ac = data2.filter(function(data){ 
+            return data.후원일자.split(" ")[0] == `${i}`})
+        const ac1 = ac.filter(function(data){ 
+            return data.후원캐시 == `${data1}`})
+            arr1.push(ac1)
+        }
+        for (j of arr1){
+            for (i of j) {
+            arr2.push(i)
+        } }
+        return arr2
+}
+
+
+
+
+
+//data1 유니크배열 data2 전체배열
+function sumSum1(data1, data2) {
+    const cutac = uniq(flat(cutAccount(data2)))
+    const arr10 = []
+    const arr20 = []
+    
+    for ( i of data1){
+        const ac = data2.filter(function(data){ 
+            return data.후원메시지 == `${i}`})
+            arr10.push(ac)
+        }
+    for (j of arr10){
+        for (i of j) {
+            arr20.push(i)
+        } }
+
+
+        
+        // 많이 뽑은 순으로 정렬하려는 나의 노력. ㅠ 결국은 메세지순서만 바꾸면 되는 것.
+    const arr = []
+    for(i of cutac){
+        const ac = arr20.filter(function(data){ 
+            return data.트위치ID == `${i}`})
+            arr.push(ac)
+        }
+            
+    const arr1 = arr.sort((x,y)=>Object(y).length-Object(x).length)
+    
+    const arr2 = []
+    
     for (j of arr1){
         for (i of j) {
-        arr2.push(i)
-    } }
-
+            arr2.push(i)
+        } }
+                
     const acount1 = cutAccount(arr2)
     const aa1 = uniq(flat(acount1))
-
+        
+    
     for(i of aa1){
         const acc = arr2.filter(function(data){ 
-            return data.Account == `${i}`})
+            return data.트위치ID == `${i}`})
 
         const acname = acc.map((obj) => Object.values(obj)[2]);
         const acacc = acc.map((obj) => Object.values(obj)[1]);
         const flatmess = flat(cutMessage(acc))
         const uniqmess = uniq(flatmess)
         const countmess = count(flatmess, uniqmess)
+
     // 메세지 카운트 내림차순
         const sortcount = Object.entries(countmess)
         .sort(([, a], [, b]) => a - b)
         .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
         const allacc = acc.length
         
-        createTable(acname[0], acacc[0], sortcount, allacc)
+        createTable(acname[0], acacc[0], sortcount, allacc, arr20)
+        
     }
+    createTable2(arr20)
 
     
 }
-    // 입력값이 메세지에 존재할때 
-    function textname(data1, data2) {
-        const arr = []
-            for (i of data2){
-                try{
-                const as = hihi(data1, i)
-                
-                arr.push(as)
-                } catch {
-                    
-                }
-            }
-            const aar1 = arr.filter(
-                (element, i) => element !== undefined
-                );
-            return aar1
-        }
-    // 입력값이 메세지에 존재할때 
-    function hihi (data1,data2) {
-        if (Object.entries(data2).flat(Infinity)[9].split(' - ')[0] == `${data1}`)
-        return data2
-    }
+const table1 = document.getElementById("table1")
+const table2 = document.getElementById("table2")
 
-// 테이블만들기
+    // 테이블만들기
 function createTable(data1, data2, data3, data4) {
-
-    document.write('<thead>')
-    document.write('<tr>')
-    document.write('<th>')
-    document.write(`${data1}, ${data2}`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`Count`)
-    document.write('</th>')
-    document.write('</tr>')
-    document.write('</thead>')
-    document.write('<tbody>')
-    for (const [key, value] of Object.entries(data3)) {
-        document.write('<tr>')
-        document.write('<td class="tdKey">')
-        document.write(`${key.replace("\"", "")}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${value}`)
-        document.write('</td>')
-        document.write('</tr>')
-    }
-    document.write('<tr>')
-    document.write('<td class="all">')
-    document.write(`All`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    document.write(`${data4}`)
-    document.write('</td>')
-    document.write('</tr>')
-    document.write('</tbody>')
+    const tablerow = tabler(data3)
+    table1.innerHTML +=  `<thead><tr><th>${data2}, ${data1}</th><th>Count</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${data4}</td></tr></tbody>`
 }
+
+function tabler(data) {
+    const tablero = []
+    for (const [key, value] of Object.entries(data)){
+        tablero.push(`<tr><td class="tdKey">${key}</td><td class="tdValue">${value}</td></tr>`)
+    }
+    return String(tablero).replaceAll(",","")
+}
+
+
+    //확률테이블
+function createTable2(data) {
+    const sum = []
+    const hibye = count(flat(cutMessage(data)), arr100)
+    const hihi = flat(cutMessage(data))
+    // 메세지 카운트 내림차순
+    const sortcount = Object.entries(hibye)
+    .sort(([, a], [, b]) => a - b)
+    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+    
+    const tablerow = tabler1(sortcount, hihi)
+    for (const [key, value] of Object.entries(sortcount)) {
+        const sd = String(value/hihi.length*100)
+        const asd = sd.substring(0, 4)
+        const s = Number(asd)
+        sum.push(s)}
+        const ssum = sum.reduce((a,b) => (a+b));
+        const ssum1 = String(ssum).substring(0, 4)
+    table2.innerHTML += `<thead><tr><th>목록</th><th>개수</th><th>확률</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${hihi.length}</td><td class="tdValue">${ssum1} %</td></tr></tbody>`
+}
+
+function tabler1(data,data1) {
+    const tablero = []
+    for (const [key, value] of Object.entries(data)) {
+        const sd = String(value/data1.length*100)
+        const asd = sd.substring(0, 4)
+        tablero.push(`<tr><td class="tdKey">${key}</td><td class="tdValue">${value}</td><td class="tdValue">${asd} %</td></tr>`)
+    }
+    return String(tablero).replaceAll(",","")
+}
+
 //파일리더기에서 파일읽으면 실행되는 함수 + csv를 json으로 바꾸는 함수
 const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
@@ -158,70 +190,43 @@ jsonArray.push(obj); }
 return jsonArray; 
 }
 
-myForm.addEventListener("submit", function (e) {
-e.preventDefault();
+
+
+const roulettes = []
+
+function priceCheck(e) {
+  e.preventDefault();
 const input = csvFile.files[0];
 const reader = new FileReader();
 //파일로드되면 실행
 reader.onload = function (e) {
-    const nameText = document.getElementById("nametext").value;
+    const price = document.getElementById("price").value;
     const date = document.getElementById("daydate").value;
     const text = e.target.result;
     const data = csvToJSON(text);
-    const bdata = textname(nameText, data)
-    const acount = cutAccount(bdata)
-    const aa = uniq(flat(acount))
-    document.write(`<title>투네이션 룰렛 결산하기</title>`);
-    document.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    `);
-    document.write(`<link rel="stylesheet" href="style.css">`);
-    document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
-    document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
-    document.write(`<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-  `);
-
-    document.write(`<nav class="navbar navbar-expand-lg navbar-light fw-bold">
-    <div class="container-fluid">
-      <a class="navbar-brand navpd" href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link"  href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/twip">트윕 룰렛 결산하기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>`);
-
-    document.write(`<div class="wrapper2">`)
-    document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('atta') );">`);
-    document.write(`<button class="button" type="button" onclick="downImg()">이미지로 복사</button>`);
-    document.write(`</div>`)
-    document.write('<table id="atta"class="csvtable">')
-    sumSum(aa, bdata, dateone(date))
-    document.write('</table>')
-    document.write(`<div class="wrapper2">`)
-    document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('attaat') );">`);
-    document.write(`<button class="button" type="button" onclick="downImg1()">이미지로 복사</button>`);
-    document.write(`</div>`)
-    mm(bdata, dateone(date))
-    document.write('<br> <br> <br>')
-    
+    const datap = dateprice(price, data, dateone(date))
+    makecheck(uniqmsg(datap))
+    for ( i of datap) {
+        roulettes.push(i)
+    }
 };
 
 reader.readAsText(input);
+};
+
+const arr100 = []
+myForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const checked = document.getElementsByName('check'); 
+    for (var checkbox of checked) {  
+        if (checkbox.checked)
+          arr100.push(checkbox.value)
+      } 
+    
+    sumSum1(arr100, roulettes)
+
 });
+
 
 //테이블을 클립보드에 복사
 function selectElementContents(el) {
@@ -246,7 +251,7 @@ function selectElementContents(el) {
 
 //테이블 이미지로 복사하기
 function downImg(){
-    html2canvas($("#atta")[0]).then(function(canvas){
+    html2canvas($("#table1")[0]).then(function(canvas){
     canvas.toBlob(function(blob) { 
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]); 
@@ -255,84 +260,12 @@ function downImg(){
 }
 //확률 테이블 이미지로 복사하기
 function downImg1(){
-    html2canvas($("#attaat")[0]).then(function(canvas){
+    html2canvas($("#table2")[0]).then(function(canvas){
     canvas.toBlob(function(blob) { 
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]); 
         });
     });
-}
-
-// 확률 계산하기
-function mm(data, data1) {
-    const arr1 = []
-    const arr2 = []
-    // 날짜로 거르기
-    for(i of data1){
-        const ac = data.filter(function(data){ 
-            return data.Time.split(" ")[0] == `${i}`})
-            arr1.push(ac)
-        }
-        for (j of arr1){
-            for (i of j) {
-                arr2.push(i)
-            } }
-            
-            
-            const hibye = count(flat(cutMessage(arr2)), uniq(flat(cutMessage(arr2))))
-            const hihi = flat(cutMessage(arr2))
-    // 메세지 카운트 내림차순
-    const sortcount = Object.entries(hibye)
-    .sort(([, a], [, b]) => a - b)
-    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
-    const sum = []
-    document.write('<table id="attaat" class="csvtable">')
-    document.write('<thead>')
-    document.write('<tr>')
-    document.write('<th>')
-    document.write(`목록`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`개수`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`확률`)
-    document.write('</th>')
-    document.write('</tr>')
-    document.write('</thead>')
-    document.write('<tbody>')
-    for (const [key, value] of Object.entries(sortcount)) {
-        const sd = String(value/hihi.length*100)
-        const asd = sd.substring(0, 4)
-        const s = Number(asd)
-        document.write('<tr>')
-        document.write('<td class="tdKey">')
-        document.write(`${key.replace("\"", "")}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${value}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${asd} %`)
-        document.write('</td>')
-        document.write('</tr>')
-        sum.push(s)
-    }
-    document.write('<tr>')
-    document.write('<td class="all">')
-    document.write(`All`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    document.write(`${hihi.length}`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    const ssum = sum.reduce((a,b) => (a+b));
-    const ssum1 = String(ssum).substring(0, 4)
-    document.write(`${ssum1} %`)
-    document.write('</td>')
-    document.write('</tr>')
-    document.write('</tbody>')
-    document.write('</table>')
 }
 
 // 날짜
@@ -398,5 +331,28 @@ $('#daydate').daterangepicker({
         ],
         "firstDay": 1
     },
-
+    "opens": "center",
+    "drops": "up"
 })
+
+
+function clicknone() {
+    document.getElementById("csv").classList.add("hidden");
+    document.getElementById("text1").classList.add("hidden");
+    document.getElementById("text2").classList.add("hidden");
+    document.getElementById("daydate").classList.add("hidden");
+    document.getElementById("price").classList.add("hidden");
+    document.getElementById("btn").classList.add("hidden");
+    document.getElementById("checkbox").classList.remove("hidden");
+}
+
+function clicknone1() {
+    document.getElementById("checkbox").classList.add("hidden");
+    document.getElementById("submitbtn").classList.add("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
+    document.getElementById("button3").classList.remove("hidden");
+    document.getElementById("button4").classList.remove("hidden");
+}
+
+document.getElementById('btn').addEventListener('click', priceCheck);

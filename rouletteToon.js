@@ -77,7 +77,6 @@ for(i of data3){
         .sort(([, a], [, b]) => a - b)
         .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
         const allacc = acc.length
-        
         createTable(acname[0], acacc[0], sortcount, allacc)
     }
 
@@ -106,40 +105,6 @@ for(i of data3){
         return data2
     }
 
-// 테이블만들기
-function createTable(data1, data2, data3, data4) {
-
-    document.write('<thead>')
-    document.write('<tr>')
-    document.write('<th>')
-    document.write(`${data1}, ${data2}`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`Count`)
-    document.write('</th>')
-    document.write('</tr>')
-    document.write('</thead>')
-    document.write('<tbody>')
-    for (const [key, value] of Object.entries(data3)) {
-        document.write('<tr>')
-        document.write('<td class="tdKey">')
-        document.write(`${key.replace("\"", "")}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${value}`)
-        document.write('</td>')
-        document.write('</tr>')
-    }
-    document.write('<tr>')
-    document.write('<td class="all">')
-    document.write(`All`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    document.write(`${data4}`)
-    document.write('</td>')
-    document.write('</tr>')
-    document.write('</tbody>')
-}
 //파일리더기에서 파일읽으면 실행되는 함수 + csv를 json으로 바꾸는 함수
 const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
@@ -171,57 +136,79 @@ reader.onload = function (e) {
     const bdata = textname(nameText, data)
     const acount = cutAccount(bdata)
     const aa = uniq(flat(acount))
-    document.write(`<title>투네이션 룰렛 결산하기</title>`);
-    document.write(`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    `);
-    document.write(`<link rel="stylesheet" href="style.css">`);
-    document.write(`<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>`);
-    document.write(`<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>`);
-    document.write(`<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-  `);
 
-    document.write(`<nav class="navbar navbar-expand-lg navbar-light fw-bold">
-    <div class="container-fluid">
-      <a class="navbar-brand navpd" href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link"  href="https://troulette.netlify.app/">투네이션 룰렛 결산하기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/twip">트윕 룰렛 결산하기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>`);
-
-    document.write(`<div class="wrapper2">`)
-    document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('atta') );">`);
-    document.write(`<button class="button" type="button" onclick="downImg()">이미지로 복사</button>`);
-    document.write(`</div>`)
-    document.write('<table id="atta"class="csvtable">')
     sumSum(aa, bdata, dateone(date))
-    document.write('</table>')
-    document.write(`<div class="wrapper2">`)
-    document.write(`<input class="button" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('attaat') );">`);
-    document.write(`<button class="button" type="button" onclick="downImg1()">이미지로 복사</button>`);
-    document.write(`</div>`)
-    mm(bdata, dateone(date))
-    document.write('<br> <br> <br>')
+
+    createTable2(bdata, dateone(date))
     
 };
 
 reader.readAsText(input);
 });
+
+
+    // 테이블만들기
+    function createTable(data1, data2, data3, data4) {
+        const tablerow = tabler(data3)
+        table1.innerHTML +=  `<thead><tr><th>${data1}, ${data2}</th><th>Count</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${data4}</td></tr></tbody>`
+    }
+    
+    function tabler(data) {
+        const tablero = []
+        for (const [key, value] of Object.entries(data)){
+            tablero.push(`<tr><td class="tdKey">${key.split(' - ')[1]}</td><td class="tdValue">${value}</td></tr>`)
+        }
+        return String(tablero).replaceAll(",","")
+    }
+    
+    
+        //확률테이블
+    function createTable2(data1, data2) {
+        const arr1 = []
+        const arr2 = []
+        // 날짜로 거르기
+        for(i of data2){
+            const ac = data1.filter(function(data){ 
+                return data.Time.split(" ")[0] == `${i}`})
+                arr1.push(ac)
+            }
+            for (j of arr1){
+                for (i of j) {
+                    arr2.push(i)
+                } }
+                
+
+        const hibye = count(flat(cutMessage(arr2)), uniq(flat(cutMessage(arr2))))
+        const hihi = flat(cutMessage(arr2))
+
+        const sum = []
+        // 메세지 카운트 내림차순
+        const sortcount = Object.entries(hibye)
+        .sort(([, a], [, b]) => a - b)
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+        
+        const tablerow = tabler1(sortcount, hihi)
+        for (const [key, value] of Object.entries(sortcount)) {
+            const sd = String(value/hihi.length*100)
+            const asd = sd.substring(0, 4)
+            const s = Number(asd)
+            sum.push(s)}
+            const ssum = sum.reduce((a,b) => (a+b));
+            const ssum1 = String(ssum).substring(0, 4)
+        table2.innerHTML += `<thead><tr><th>목록</th><th>개수</th><th>확률</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${hihi.length}</td><td class="tdValue">${ssum1} %</td></tr></tbody>`
+    }
+    
+    function tabler1(data,data1) {
+        const tablero = []
+        for (const [key, value] of Object.entries(data)) {
+            const sd = String(value/data1.length*100)
+            const asd = sd.substring(0, 4)
+            tablero.push(`<tr><td class="tdKey">${key.split(' - ')[1]}</td><td class="tdValue">${value}</td><td class="tdValue">${asd} %</td></tr>`)
+        }
+        return String(tablero).replaceAll(",","")
+    }
+    
+
 
 //테이블을 클립보드에 복사
 function selectElementContents(el) {
@@ -246,7 +233,7 @@ function selectElementContents(el) {
 
 //테이블 이미지로 복사하기
 function downImg(){
-    html2canvas($("#atta")[0]).then(function(canvas){
+    html2canvas($("#table1")[0]).then(function(canvas){
     canvas.toBlob(function(blob) { 
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]); 
@@ -255,7 +242,7 @@ function downImg(){
 }
 //확률 테이블 이미지로 복사하기
 function downImg1(){
-    html2canvas($("#attaat")[0]).then(function(canvas){
+    html2canvas($("#table2")[0]).then(function(canvas){
     canvas.toBlob(function(blob) { 
         const item = new ClipboardItem({ "image/png": blob });
         navigator.clipboard.write([item]); 
@@ -263,77 +250,6 @@ function downImg1(){
     });
 }
 
-// 확률 계산하기
-function mm(data, data1) {
-    const arr1 = []
-    const arr2 = []
-    // 날짜로 거르기
-    for(i of data1){
-        const ac = data.filter(function(data){ 
-            return data.Time.split(" ")[0] == `${i}`})
-            arr1.push(ac)
-        }
-        for (j of arr1){
-            for (i of j) {
-                arr2.push(i)
-            } }
-            
-            
-            const hibye = count(flat(cutMessage(arr2)), uniq(flat(cutMessage(arr2))))
-            const hihi = flat(cutMessage(arr2))
-    // 메세지 카운트 내림차순
-    const sortcount = Object.entries(hibye)
-    .sort(([, a], [, b]) => a - b)
-    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
-    const sum = []
-    document.write('<table id="attaat" class="csvtable">')
-    document.write('<thead>')
-    document.write('<tr>')
-    document.write('<th>')
-    document.write(`목록`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`개수`)
-    document.write('</th>')
-    document.write('<th>')
-    document.write(`확률`)
-    document.write('</th>')
-    document.write('</tr>')
-    document.write('</thead>')
-    document.write('<tbody>')
-    for (const [key, value] of Object.entries(sortcount)) {
-        const sd = String(value/hihi.length*100)
-        const asd = sd.substring(0, 4)
-        const s = Number(asd)
-        document.write('<tr>')
-        document.write('<td class="tdKey">')
-        document.write(`${key.replace("\"", "")}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${value}`)
-        document.write('</td>')
-        document.write('<td class="tdValue">')
-        document.write(`${asd} %`)
-        document.write('</td>')
-        document.write('</tr>')
-        sum.push(s)
-    }
-    document.write('<tr>')
-    document.write('<td class="all">')
-    document.write(`All`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    document.write(`${hihi.length}`)
-    document.write('</td>')
-    document.write('<td class="tdValue">')
-    const ssum = sum.reduce((a,b) => (a+b));
-    const ssum1 = String(ssum).substring(0, 4)
-    document.write(`${ssum1} %`)
-    document.write('</td>')
-    document.write('</tr>')
-    document.write('</tbody>')
-    document.write('</table>')
-}
 
 // 날짜
 function dateone(data) {
@@ -401,3 +317,16 @@ $('#daydate').daterangepicker({
     "opens": "center",
     "drops": "up"
 })
+
+function clicknone() {
+    document.getElementById("csv").classList.add("hidden");
+    document.getElementById("text1").classList.add("hidden");
+    document.getElementById("text2").classList.add("hidden");
+    document.getElementById("daydate").classList.add("hidden");
+    document.getElementById("nametext").classList.add("hidden");
+    document.getElementById("submitbtn").classList.add("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
+    document.getElementById("button3").classList.remove("hidden");
+    document.getElementById("button4").classList.remove("hidden");
+}
