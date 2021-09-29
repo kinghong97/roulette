@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="투네이션 룰렛 전체 결산하기">
-    <meta name="subject" content="투네이션 룰렛 전체 결산">
-    <meta name="keywords" content="투네이션 룰렛, 룰렛, 투네이션, 결산, 투네이션, 투네이션 룰렛, 투네이션 룰렛 결산, 투네이션 룰렛 결산하기, 투네이션 룰렛 정리, 투네이션 룰렛 정산, 트위치, 트위치 룰렛, 트위치 룰렛 결산, 트위치 룰렛 정리, 룰렛 결과 정리, 트위치 룰렛 결과 정리, 트윕 룰렛 결과 정리">
+    <meta name="title" content="투네이션 룰렛 선택 결산하기">
+    <meta name="subject" content="투네이션 선택 결산">
+    <meta name="keywords" content="투네이션 룰렛, 룰렛, 투네이션, 결산, 투네이션, 투네이션 룰렛, 투네이션 룰렛 결산, 투네이션 룰렛 결산하기, 투네이션 룰렛 정리, 투네이션 룰렛 정산, 트위치, 트위치 룰렛, 트위치 룰렛 결산, 트위치 룰렛 정리, 룰렛 결과 정리, 트위치 룰렛 결과 정리, 트윕 룰렛 결과 정리, 투네이션 룰렛 선택 결산하기, 투네이션 룰렛 선택 결산하기">
     <meta name="author" content="kinghong97">
-    <title>투네이션 룰렛 전체 결산하기</title>
+    <title>투네이션 룰렛 선택 결산하기</title>
     <meta name="description" content="쉽게 투네이션 룰렛을 결산하고 결과를 복사해보세요." />
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://www.kungtool.com/toon" />
-    <meta property="og:url" content="https://www.kungtool.com/toon" />
+    <link rel="canonical" href="https://www.kungtool.com/toonselect" />
+    <meta property="og:url" content="https://www.kungtool.com/toonselect" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="투네이션 룰렛 전체 결산하기" />
+    <meta property="og:title" content="투네이션 룰렛 선택 결산하기" />
     <meta property="og:description" content="쉽게 투네이션 룰렛을 결산하고 결과를 복사해보세요. 텍스트로 복사하기 또는 이미지로 캡쳐하여 복사할 수 있습니다." />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -65,13 +65,12 @@
       </div>
     </div>
   </nav>
-
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <img class="rounded me-2">
         <strong class="me-auto">사용 방법</strong>
-        <small>투네이션 전체</small>
+        <small>투네이션 선택</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
@@ -79,11 +78,10 @@
          2. csv 버튼 눌러 파일 추가<br/>
          3. 룰렛 돌린 날짜 지정<br/>
          4. 룰렛 이름 입력 후 결산하기<br/>
-        
+         5. 룰렛 목록 체크 후 확인<br/>
       </div>
     </div>
   </div>
-
 <div id="csv" class="wrapper">
   <div  class="file-upload">
     <input type="file" id="csvFile" accept=".csv" />
@@ -93,6 +91,11 @@
 <div>
   <h2 id="text1"class="h2text">룰렛 돌린 날짜를 지정해 주세요</h2>
   </div>
+  <div id="checkbox" class="checkbox hidden">
+    <h2 id="checktext">룰렛 목록을 체크해주세요</h2>
+    <h4 id="checktext1"></h4>
+  </div>
+
   <div>
     <form id="myForm">
       <div id="text2" class="wrapper4" title="룰렛 돌린 날짜를 지정해 주세요">
@@ -105,7 +108,9 @@
     </div>
     <div>
       <div class="wrapper3">
-        <input id="submitbtn" class= "button" type="submit" onclick="clicknone()" value="결산하기" />
+        <input id="selectbtn" class="button" type="button" onclick="clickno2()" value="결산하기" />
+        <input id="selectbtn1" class="button hidden" type="button" onclick="clickno3()" value="확인" style="
+        width: 120px;" />
         <input id="namego" class="button hidden" type="button" onclick="nameclick()" value="이름 정렬" />
         <input id="msggo" class="button hidden" type="button" onclick="msgclick()" value="목록 정렬" />
       </div>
@@ -144,7 +149,7 @@
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
   <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
-  <script src="js\toon.js"></script>  
+  <script src="js\toonselect.js"></script>  
     <script>
     </script>
 </body>

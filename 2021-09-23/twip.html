@@ -18,45 +18,32 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
-    crossorigin="anonymous"></script>
 
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
+    <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light fw-bold">
     <div class="container-fluid">
-      <a class="navbar-brand navpd" href="https://www.kungtool.com">#kungtool</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand navpd" href="https://www.kungtool.com/twip">트윕 룰렛 결산하기</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                투네이션 룰렛 결산하기
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="https://www.kungtool.com/toon">전체 결산하기</a></li>
-              <li><a class="dropdown-item" href="https://www.kungtool.com/toonselect">선택 결산하기</a></li>
-              <li><a class="dropdown-item" href="https://www.kungtool.com/toonfirst">선착순 결산하기</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                트윕 룰렛 결산하기
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="https://www.kungtool.com/twip">전체 결산하기</a></li>
-              <li><a class="dropdown-item" href="https://www.kungtool.com/twipfirst">선착순 결산하기</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link"  href="https://www.kungtool.com/toon">투네이션 룰렛 결산하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.kungtool.com/blog">블로그</a>
+            <a class="nav-link" href="https://www.kungtool.com/twip">트윕 룰렛 결산하기</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
@@ -65,23 +52,7 @@
       </div>
     </div>
   </nav>
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img class="rounded me-2">
-        <strong class="me-auto">사용 방법</strong>
-        <small>트윕</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-         1. 후원관리 - 알림목록 - csv 다운로드<br/>
-         2. csv 버튼 눌러 파일 추가<br/>
-         3. 룰렛 돌린 날짜 지정<br/>
-         4. 룰렛 가격 입력 후 결산하기<br/>
-         5. 룰렛 목록 체크 후 확인<br/>
-      </div>
-    </div>
-  </div>
+
 <div id="csv" class="wrapper">
   <div  class="file-upload">
     <input type="file" id="csvFile" accept=".csv" />
@@ -110,14 +81,11 @@
     <div>
       <div class="wrapper3">
         <input id="submitbtn" class= "button" type="submit" onclick="clicknone1()" value=" 결산하기 " />
-        <input id="namego" class="button hidden" type="button" onclick="nameclick()" value="이름 정렬" />
-        <input id="msggo" class="button hidden" type="button" onclick="msgclick()" value="목록 정렬" />
       </div>
     </div>
     </form>
   </div>
 <div>
-  
   <div class="wrapper2">
     <input id="button1"class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table1') );">
     <button id="button2" class="button hidden" type="button" onclick="downImg()">이미지로 복사</button>
@@ -125,30 +93,21 @@
   <div>
   <table id="table1" class="table1"></table>
 </div>
-  <div class="wrapper2">
-    <input id="button3" class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table2') );">
-    <button id="button4" class="button hidden" type="button" onclick="downImg1()">이미지로 복사</button>
-  </div>
-  </div>
-  <div>
-  <table id="table2" class="table2"></table>
-  </div>
-
-
+<div class="wrapper2">
+  <input id="button3" class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table2') );">
+  <button id="button4" class="button hidden" type="button" onclick="downImg1()">이미지로 복사</button>
+</div>
+</div>
+<div>
+<table id="table2" class="table2"></table>
+</div>
 <div class="bottom"></div>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
-  <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
-  <script src="js\twip.js"></script>  
+  <script src="rouletteTwip.js"></script>  
     <script>
     </script>
-    
 </body>
 
   <!-- A styled file input.

@@ -3,28 +3,28 @@
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="투네이션 룰렛 전체 결산하기">
-    <meta name="subject" content="투네이션 룰렛 전체 결산">
-    <meta name="keywords" content="투네이션 룰렛, 룰렛, 투네이션, 결산, 투네이션, 투네이션 룰렛, 투네이션 룰렛 결산, 투네이션 룰렛 결산하기, 투네이션 룰렛 정리, 투네이션 룰렛 정산, 트위치, 트위치 룰렛, 트위치 룰렛 결산, 트위치 룰렛 정리, 룰렛 결과 정리, 트위치 룰렛 결과 정리, 트윕 룰렛 결과 정리">
+    <meta name="title" content="트윕 룰렛 선착순 결산하기">
+    <meta name="subject" content="트윕 룰렛">
+    <meta name="keywords" content="트윕 룰렛, 룰렛, 트윕, 결산, 트윕, 트윕 룰렛, 트윕 룰렛 결산, 트윕 룰렛 결산하기, 트윕 룰렛 정리, 트윕 룰렛 정산, 트위치, 트위치 룰렛, 트위치 룰렛 결산, 트위치 룰렛 정리, 룰렛 결과 정리, 트위치 룰렛 결과 정리, 트윕 룰렛 결과 정리">
     <meta name="author" content="kinghong97">
-    <title>투네이션 룰렛 전체 결산하기</title>
-    <meta name="description" content="쉽게 투네이션 룰렛을 결산하고 결과를 복사해보세요." />
+    <title>트윕 룰렛 선착순 결산하기</title>
+    <meta name="description" content="쉽게 트윕 룰렛을 결산하고 결과를 복사해보세요." />
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://www.kungtool.com/toon" />
-    <meta property="og:url" content="https://www.kungtool.com/toon" />
+    <link rel="canonical" href="https://www.kungtool.com/twip" />
+    <meta property="og:url" content="https://www.kungtool.com/twip" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="투네이션 룰렛 전체 결산하기" />
-    <meta property="og:description" content="쉽게 투네이션 룰렛을 결산하고 결과를 복사해보세요. 텍스트로 복사하기 또는 이미지로 캡쳐하여 복사할 수 있습니다." />
+    <meta property="og:title" content="트윕 룰렛 선착순 결산하기" />
+    <meta property="og:description" content="쉽게 트윕 룰렛을 결산하고 결과를 복사해보세요. 텍스트로 복사하기 또는 이미지로 캡쳐하여 복사할 수 있습니다." />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
     crossorigin="anonymous"></script>
 
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -65,25 +65,24 @@
       </div>
     </div>
   </nav>
-
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <img class="rounded me-2">
         <strong class="me-auto">사용 방법</strong>
-        <small>투네이션 전체</small>
+        <small>트윕 선착순</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
          1. 후원관리 - 알림목록 - csv 다운로드<br/>
          2. csv 버튼 눌러 파일 추가<br/>
          3. 룰렛 돌린 날짜 지정<br/>
-         4. 룰렛 이름 입력 후 결산하기<br/>
-        
+         4. 룰렛 가격 입력 후 결산하기<br/>
+         5. 중복 가능한지 체크<br/>
+         6. 선착순 할 룰렛 개수 입력 후 확인<br/>
       </div>
     </div>
   </div>
-
 <div id="csv" class="wrapper">
   <div  class="file-upload">
     <input type="file" id="csvFile" accept=".csv" />
@@ -93,6 +92,12 @@
 <div>
   <h2 id="text1"class="h2text">룰렛 돌린 날짜를 지정해 주세요</h2>
   </div>
+</div>
+<div id="numberboxdiv" class="numberboxdiv hidden">
+  <h2 id="numberboxtext">룰렛의 선착순 개수를 입력해 주세요</h2>
+  <h4 id="numberbox"></h4>
+</div>
+
   <div>
     <form id="myForm">
       <div id="text2" class="wrapper4" title="룰렛 돌린 날짜를 지정해 주세요">
@@ -101,40 +106,33 @@
     </div>
     <div>
       <div class="wrapper2">
-      <input id="nametext" placeholder="룰렛 이름을 입력해 주세요">
+      <input title="룰렛가격을 입력해주세요" type="text" id="price" placeholder="룰렛가격" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+      <button id="btn" class="btn1" onclick="clicknone()">확인 </button>
     </div>
     <div>
       <div class="wrapper3">
-        <input id="submitbtn" class= "button" type="submit" onclick="clicknone()" value="결산하기" />
-        <input id="namego" class="button hidden" type="button" onclick="nameclick()" value="이름 정렬" />
-        <input id="msggo" class="button hidden" type="button" onclick="msgclick()" value="목록 정렬" />
+        <input id="submitbtn" class= "button" type="submit" onclick="clicknone1()" value=" 결산하기 " />
       </div>
     </div>
     </form>
   </div>
-
+<div>
   <div class="wrapper2">
     <input id="button1"class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table1') );">
     <button id="button2" class="button hidden" type="button" onclick="downImg()">이미지로 복사</button>
-    <input id="button7"class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('text3') );">
-    <button id="button5" class="button hidden" type="button" onclick="downImg2()">이미지로 복사</button>
   </div>
   <div>
   <table id="table1" class="table1"></table>
-  <a id="text3" class="text3"></a>
 </div>
-
   <div class="wrapper2">
     <input id="button3" class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table2') );">
     <button id="button4" class="button hidden" type="button" onclick="downImg1()">이미지로 복사</button>
-    <input id="button8" class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('text4') );">
-    <button id="button6" class="button hidden" type="button" onclick="downImg3()">이미지로 복사</button>
+  </div>
   </div>
   <div>
-    <table id="table2" class="table2"></table>
-    <a id="text4" class="text4"></a>
+  <table id="table2" class="table2"></table>
   </div>
-
+  
 
 
 <div class="bottom"></div>
@@ -144,9 +142,13 @@
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
   <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.js"></script>
-  <script src="js\toon.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+
+  <script src="js\twipfirst.js"></script>  
     <script>
     </script>
+    
 </body>
 
   <!-- A styled file input.
