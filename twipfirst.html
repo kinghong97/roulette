@@ -56,15 +56,18 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.kungtool.com/blog">블로그</a>
+            <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
+            <a class="nav-link" href="https://www.kungtool.com/blog">블로그</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <div style="align-items: center; justify-content: center; text-align: center; padding-top: 3%; padding-bottom: 3%;">
+    <a id="header" onClick="window.location.reload()">트윕 룰렛 선착순 결산하기</a>
+    </div>
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
@@ -97,7 +100,9 @@
   <h2 id="numberboxtext">룰렛의 선착순 개수를 입력해 주세요</h2>
   <h4 id="numberbox"></h4>
 </div>
-
+<div id="toppointer" class="back-to-top pointer" onclick="scrollToTop();return false;">
+  <img class="toppointer" src="https://raw.githubusercontent.com/kinghong97/kinghong97.github.io/e2cebdb7196c8bf9155c4674ab9ba460a49d0bdd/assets/css/sss.svg">
+</div>
   <div>
     <form id="myForm">
       <div id="text2" class="wrapper4" title="룰렛 돌린 날짜를 지정해 주세요">
@@ -106,7 +111,7 @@
     </div>
     <div>
       <div class="wrapper2">
-      <input title="룰렛가격을 입력해주세요" type="text" id="price" placeholder="룰렛가격" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+      <input title="룰렛가격을 입력해주세요" type="text" id="price" autocomplete='off' placeholder="룰렛가격" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
       <button id="btn" class="btn1" onclick="clicknone()">확인 </button>
     </div>
     <div>
@@ -117,25 +122,34 @@
     </form>
   </div>
 <div>
-  <div class="wrapper2">
-    <input id="button1"class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table1') );">
-    <button id="button2" class="button hidden" type="button" onclick="downImg()">이미지로 복사</button>
-  </div>
-  <div>
-  <table id="table1" class="table1"></table>
 </div>
-  <div class="wrapper2">
-    <input id="button3" class="button hidden" type="button" value="텍스트로 복사" onclick="selectElementContents( document.getElementById('table2') );">
-    <button id="button4" class="button hidden" type="button" onclick="downImg1()">이미지로 복사</button>
-  </div>
-  </div>
-  <div>
+<div class="wrapper2">
+  <button id="button1" class="button hidden" type="button" onclick="selectElementContents( document.getElementById('table1') );">텍스트로 복사</button>
+  <button id="button2" class="button hidden" type="button" onclick="downImg()">이미지로 복사</button>
+  <button id="button7" class="button hidden" type="button" onclick="selectElementContents( document.getElementById('text3') );">텍스트로 복사</button>
+  <button id="button5" class="button hidden" type="button" onclick="downImg2()">이미지로 복사</button>
+</div>
+<div>
+<table id="table1" class="table1"></table>
+<a id="text3" class="text3"></a>
+</div>
+<div class="wrapper2">
+  <button id="button3" class="button hidden" type="button" onclick="selectElementContents( document.getElementById('table2') );">텍스트로 복사</button>
+  <button id="button4" class="button hidden" type="button" onclick="downImg1()">이미지로 복사</button>
+  <button id="button8" class="button hidden" type="button" onclick="selectElementContents( document.getElementById('text4') );">텍스트로 복사</button>
+  <button id="button6" class="button hidden" type="button" onclick="downImg3()">이미지로 복사</button>
+</div>
+<div>
   <table id="table2" class="table2"></table>
-  </div>
-  
-
-
-<div class="bottom"></div>
+  <a id="text4" class="text4"></a>
+</div>
+<div class="bottom">
+<div>
+  <br/> <br/> <br/> <br/> <br/>
+<a class="copyright">Copyright © 2021 kinghong97
+</div>
+</a>
+</div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -146,6 +160,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
   <script src="js\twipfirst.js"></script>  
+  <script src="js\all.js"></script>
     <script>
     </script>
     

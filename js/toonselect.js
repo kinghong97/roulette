@@ -307,55 +307,13 @@ var getDaysArray = function(start, end) {
     }
     return arr;
 };
-
-
-
-$('#daydate').daterangepicker({
-    "locale": {
-        "format": "YYYY/MM/DD",
-        "separator": " - ",
-        "applyLabel": "확인",
-        "cancelLabel": "취소",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": [
-            "일",
-            "월",
-            "화",
-            "수",
-            "목",
-            "금",
-            "토"
-        ],
-        "monthNames": [
-            "1월",
-            "2월",
-            "3월",
-            "4월",
-            "5월",
-            "6월",
-            "7월",
-            "8월",
-            "9월",
-            "10월",
-            "11월",
-            "12월"
-        ],
-        "firstDay": 1
-    },
-    "opens": "center",
-    "drops": "up"
-})
-
 function clickno2() {
     document.getElementById("csv").classList.add("hidden");
     document.getElementById("text1").classList.add("hidden");
     document.getElementById("text2").classList.add("hidden");
     document.getElementById("daydate").classList.add("hidden");
     document.getElementById("nametext").classList.add("hidden");
-    document.getElementById("selectbtn").classList.add("hidden");
+    document.getElementById("submitbtn").classList.add("hidden");
     document.getElementById("selectbtn1").classList.remove("hidden");
     document.getElementById("checkbox").classList.remove("hidden");
 }
@@ -394,7 +352,7 @@ function date_descending(a, b) {
     };
     
 
-document.getElementById('selectbtn').addEventListener('click', pickmsg);
+document.getElementById('submitbtn').addEventListener('click', pickmsg);
 document.getElementById('selectbtn1').addEventListener('click', pickmsg1);
 
 
