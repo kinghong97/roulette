@@ -473,6 +473,10 @@ a:hover {
   text-align: center;
   padding-top: 3%;
 }
+#header:hover{
+  color: white;
+  transition: all 0.5s
+}
 .bottom-0{
   position: fixed;
   top: 69%;
