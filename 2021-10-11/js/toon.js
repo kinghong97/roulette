@@ -1,3 +1,4 @@
+
 // 이름
 function cutAccount(data) {
     return JSON.stringify(data, ['Account'])
@@ -31,31 +32,13 @@ function count(data1, data2) {
 function flat(data) {
     return toArray(data).flat(Infinity)
 }
-// 선택된 메세지로 거르기 data1 선택된 data2 전체
-function msgmsg(data1, data2) {
-    const arr10 = []
-    const arr20 = []
-    
-    for ( i of data1){
-        const ac = data2.filter(function(data){ 
-            return data.Message == `${i}`})
-            arr10.push(ac)
-        }
-    for (j of arr10){
-        for (i of j) {
-            arr20.push(i)
-        } 
-    }
-    return arr20
-}
-//data1 유니크배열 data2이름메세지배열 data3 날짜 data4 뽑은메세지
-function sumSum(data1, data2, data3, data4) {
-    const msg1 = msgmsg(data4, data2)
+//data1 유니크배열 data2이름메세지배열 data3 날짜
+function sumSum(data1, data2, data3) {
     const arr3 = []
     const arr4 = []
 // 날짜로 거르기
 for(i of data3){
-    const ac = msg1.filter(function(data){ 
+    const ac = data2.filter(function(data){ 
         return data.Time.split(" ")[0] == `${i}`})
         arr3.push(ac)
     }
@@ -87,6 +70,7 @@ for(i of data3){
     for(i of aa1){
         const acc = arr2.filter(function(data){ 
             return data.Account == `${i}`})
+
         const acname = acc.map((obj) => Object.values(obj)[2]);
         const acacc = acc.map((obj) => Object.values(obj)[1]);
         const flatmess = flat(cutMessage(acc))
@@ -100,14 +84,13 @@ for(i of data3){
         createTable(acname[0], acacc[0], sortcount, allacc)
     }
 }
-//data1 유니크배열 data2이름메세지배열 data3 날짜 data4 뽑은메세지
-function sumSum3(data1, data2, data3, data4) {
-    const msg1 = msgmsg(data4, data2)
+//data1 유니크배열 data2이름메세지배열 data3 날짜
+function sumSum3(data1, data2, data3) {
     const arr3 = []
     const arr4 = []
 // 날짜로 거르기
 for(i of data3){
-    const ac = msg1.filter(function(data){ 
+    const ac = data2.filter(function(data){ 
         return data.Time.split(" ")[0] == `${i}`})
         arr3.push(ac)
     }
@@ -134,9 +117,9 @@ for(i of data3){
         for (i of j) {
         arr2.push(i)
     } }
-
     const flatmess = flat(cutMessage(arr2))
     const uniqmess = uniq(flatmess)
+
 
     for (i of uniqmess){
         const msg = arr2.filter(function(data){ 
@@ -158,6 +141,7 @@ for(i of data3){
             for (i of data2){
                 try{
                 const as = hihi(data1, i)
+                
                 arr.push(as)
                 } catch {
                     
@@ -183,24 +167,43 @@ const rows = csv_string.replaceAll("\"", "")
 const rowss = rows.replaceAll("\r", "")
 const rowsss = rowss.split("\n")
 const jsonArray = []; 
+
 const header = rowsss[0].split(","); 
 for(let i = 1; i < rowsss.length; i++){ 
-let obj = {}; 
-let row = rowsss[i].split(","); 
-let row1 = row.slice(0,4)
-row1.push(row.slice(4).join())
+    let obj = {}; 
+    let row = rowsss[i].split(","); 
+    let row1 = row.slice(0,4)
+    row1.push(row.slice(4).join())
 for(let j=0; j < header.length; j++){ obj[header[j]] = row1[j]; } 
 jsonArray.push(obj); }
 return jsonArray; 
 }
 
+myForm.addEventListener("submit", function (e) {
+e.preventDefault();
+const input = csvFile.files[0];
+const reader = new FileReader();
+//파일로드되면 실행
+reader.onload = function (e) {
+    const nameText = document.getElementById("nametext").value;
+    const date = document.getElementById("daydate").value;
+    const text = e.target.result;
+    const data = csvToJSON(text);
+    const bdata = textname(nameText, data)
+    const acount = cutAccount(bdata)
+    const aa = uniq(flat(acount))
+    sumSum(aa, bdata, dateone(date))
+    createTable2(bdata, dateone(date))
+};
+
+reader.readAsText(input);
+});
+
     // 테이블만들기
     function createTable(data1, data2, data3, data4) {
         const tablerow = tabler(data3)
-        
         table1.innerHTML +=  `<thead><tr><th>${data1}</th><th>Count</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${data4}</td></tr></tbody>`
     }
-    
     function tabler(data) {
         const tablero = []
         for (const [key, value] of Object.entries(data)){
@@ -208,19 +211,129 @@ return jsonArray;
         }
         return tablero.join('')
     }
-        // 테이블만들기
-        function createTable3(data1, data3, data4) {
-            const tablerow = tabler3(data3)
-            table1.innerHTML +=  `<thead><tr><th>${data1.split(' - ')[1]}</th><th>Count</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${data4}</td></tr></tbody>`
-        }
-        
-        function tabler3(data) {
-            const tablero = []
-            for (const [key, value] of Object.entries(data)){
-                tablero.push(`<tr><td class="tdKey">${key}</td><td class="tdValue">${value}</td></tr>`)
+            // 테이블만들기
+            function createTable3(data1, data3, data4) {
+                const tablerow = tabler3(data3)
+                table1.innerHTML +=  `<thead><tr><th>${data1.split(' - ')[1]}</th><th>Count</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${data4}</td></tr></tbody>`
             }
-            return tablero.join('')
+            
+            function tabler3(data) {
+                const tablero = []
+                for (const [key, value] of Object.entries(data)){
+                    tablero.push(`<tr><td class="tdKey">${key}</td><td class="tdValue">${value}</td></tr>`)
+                }
+                return tablero.join('')
+            }
+    
+        //확률있는 총 결과 테이블
+    function createTable2(data1, data2) {
+        const arr1 = []
+        const arr2 = []
+        // 날짜로 거르기
+        for(i of data2){
+            const ac = data1.filter(function(data){ 
+                return data.Time.split(" ")[0] == `${i}`})
+                arr1.push(ac)
+            }
+            for (j of arr1){
+                for (i of j) {
+                    arr2.push(i)
+                } }
+                
+
+        const hibye = count(flat(cutMessage(arr2)), uniq(flat(cutMessage(arr2))))
+        const hihi = flat(cutMessage(arr2))
+
+        
+        
+        const sum = []
+        // 메세지 카운트 내림차순
+        const sortcount = Object.entries(hibye)
+        .sort(([, a], [, b]) => a - b)
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+        const tablerow = tabler1(sortcount, hihi)
+        for (const [key, value] of Object.entries(sortcount)) {
+            const sd = String(value/hihi.length*100)
+            const asd = sd.substring(0, 4)
+            const s = Number(asd)
+            sum.push(s)}
+            const ssum = sum.reduce((a,b) => (a+b));
+            const ssum1 = String(ssum).substring(0, 4)
+            table2.innerHTML += `<thead><tr><th>목록</th><th>개수</th><th>확률</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${hihi.length}</td><td class="tdValue">${ssum1} %</td></tr></tbody>`
         }
+    
+    function tabler1(data,data1) {
+        const tablero = []
+        for (const [key, value] of Object.entries(data)) {
+            const sd = String(value/data1.length*100)
+            const asd = sd.substring(0, 4)
+            
+            tablero.push(`<tr><td class="tdKey">${key.split(' - ')[1]}</td><td class="tdValue">${value}</td><td class="tdValue">${asd} %</td></tr>`)
+        }
+        return tablero.join('')
+    }
+    
+
+
+//테이블을 클립보드에 복사
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function downImg(){
+    html2canvas($("#table1")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 테이블 이미지로 복사하기
+function downImg1(){
+    html2canvas($("#table2")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
+//텍스트 이미지로 복사하기
+function downImg2(){
+    html2canvas($("#text3")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 텍스트 이미지로 복사하기
+function downImg3(){
+    html2canvas($("#text4")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
 
 // 날짜 얻기
 function dateone(data) {
@@ -247,149 +360,68 @@ var getDaysArray = function(start, end) {
     }
     return arr;
 };
-function clickno2() {
+
+
+
+
+
+function clicknone() {
     document.getElementById("csv").classList.add("hidden");
     document.getElementById("text1").classList.add("hidden");
     document.getElementById("text2").classList.add("hidden");
     document.getElementById("daydate").classList.add("hidden");
     document.getElementById("nametext").classList.add("hidden");
     document.getElementById("submitbtn").classList.add("hidden");
-    document.getElementById("selectbtn1").classList.remove("hidden");
-    document.getElementById("checkbox").classList.remove("hidden");
-}
-function clickno3() {
-    document.getElementById("checkbox").classList.add("hidden");
-    document.getElementById("selectbtn1").classList.add("hidden");
-    document.getElementById("result1").classList.remove("hidden");
-    document.getElementById("result2").classList.remove("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
+    document.getElementById("button3").classList.remove("hidden");
+    document.getElementById("button4").classList.remove("hidden");
     document.getElementById("namego").classList.remove("hidden");
     document.getElementById("msggo").classList.remove("hidden");
 }
-
 function nameclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg1()
 }
 function msgclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg2()
 }
-// 메세지 유니크
-function uniqmsg(data) {
-    return uniq(flat(cutMessage(data)))
-}
 
+function pickmsg1() {
+const input = csvFile.files[0];
+const reader = new FileReader();
+//파일로드되면 실행
+reader.onload = function (e) {
+    const nameText = document.getElementById("nametext").value;
+    const date = document.getElementById("daydate").value;
+    const text = e.target.result;
+    const data = csvToJSON(text);
+    const bdata = textname(nameText, data)
+    const acount = cutAccount(bdata)
+    const aa = uniq(flat(acount))
+    sumSum(aa, bdata, dateone(date))
+    createTable2(bdata, dateone(date))
+};
 
-// 날짜 내림차순 정렬
-function date_descending(a, b) {
-    var dateA = new Date(a['날짜']).getTime();
-    var dateB = new Date(b['날짜']).getTime();
-    return dateA < dateB ? 1 : -1;
-    };
-    
-
-document.getElementById('submitbtn').addEventListener('click', pickmsg);
-document.getElementById('selectbtn1').addEventListener('click', pickmsg1);
-
-
-        //확률없는 총 결과 테이블
-    function createTable4(data1, data2) {
-        const arr1 = []
-        const arr2 = []
-        // 날짜로 거르기
-        for(i of data2){
-            const ac = data1.filter(function(data){ 
-                return data.Time.split(" ")[0] == `${i}`})
-                arr1.push(ac)
-            }
-            for (j of arr1){
-                for (i of j) {
-                    arr2.push(i)
-                } }
-                
-
-        const hibye = count(flat(cutMessage(arr2)), uniq(flat(cutMessage(arr2))))
-        const hihi = flat(cutMessage(arr2))
-
-        // 메세지 카운트 내림차순
-        const sortcount = Object.entries(hibye)
-        .sort(([, a], [, b]) => a - b)
-        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
-        
-        const tablerow = tabler2(sortcount, hihi)
-        
-        table2.innerHTML += `<thead><tr><th>목록</th><th>개수</th></tr></thead><tbody>${tablerow}<tr><td class="all">All</td><td class="tdValue">${hihi.length}</td></tr></tbody>`
-    }
-    
-    function tabler2(data,data1) {
-        const tablero = []
-        for (const [key, value] of Object.entries(data)) {
-            const sd = String(value/data1.length*100)
-            const asd = sd.substring(0, 4)
-            tablero.push(`<tr><td class="tdKey">${key.split(' - ')[1]}</td><td class="tdValue">${value}</td></tr>`)
-        }
-        return tablero.join('')
-    }
-    
-    // 체크박스만들기
-function makecheck(data) {
-    for (i of data) {
-        document.getElementById("checktext1").innerHTML +=  `<hr><a class="inputrow"><input id="checkboxbox" name="check" type="checkbox" value="${i}"><a class="checkrow">${i.split(' - ')[1]}</a> <br /></a>`;
-    }
-}
-
-    const roulettes = []
-
-    function pickmsg(e) {
-      e.preventDefault();
+reader.readAsText(input);
+};
+function pickmsg2() {
     const input = csvFile.files[0];
-    const reader = new FileReader();
-    //파일로드되면 실행
-    reader.onload = function (e) {
-        const nametext = document.getElementById("nametext").value;
-        const text = e.target.result;
-        const data = csvToJSON(text);
-        const bdata = textname(nametext, data)
-        const acount = cutAccount(bdata)
-        const aa = uniq(flat(acount))
-        makecheck(uniqmsg(bdata))
-        for ( i of bdata) {
-            roulettes.push(i)
-        }
-        makebtn('table1')
-    };
-    
-    reader.readAsText(input);
-    };
-
-    function pickmsg1() {
-        const arr100 = []
-        const date = document.getElementById("daydate").value;
-        const checked = document.getElementsByName('check'); 
-        const acount = cutAccount(roulettes)
-        const aa = uniq(flat(acount))
-        for (var checkbox of checked) {  
-            if (checkbox.checked)
-              arr100.push(checkbox.value)
-          } 
-        sumSum(aa, roulettes, dateone(date), arr100)
-
-        createTable4(msgmsg(arr100, roulettes), dateone(date))
-    }
-
-    function pickmsg2() {
-        const arr100 = []
-        const date = document.getElementById("daydate").value;
-        const checked = document.getElementsByName('check'); 
-        const acount = cutAccount(roulettes)
-        const aa = uniq(flat(acount))
-        for (var checkbox of checked) {  
-            if (checkbox.checked)
-              arr100.push(checkbox.value)
-          } 
-        sumSum3(aa, roulettes, dateone(date), arr100)
-
-        createTable4(msgmsg(arr100, roulettes), dateone(date))
-    }
+const reader = new FileReader();
+//파일로드되면 실행
+reader.onload = function (e) {
+    const nameText = document.getElementById("nametext").value;
+    const date = document.getElementById("daydate").value;
+    const text = e.target.result;
+    const data = csvToJSON(text);
+    const bdata = textname(nameText, data)
+    const acount = cutAccount(bdata)
+    const aa = uniq(flat(acount))
+    sumSum3(aa, bdata, dateone(date))
+    createTable2(bdata, dateone(date))
+}
+reader.readAsText(input);
+};

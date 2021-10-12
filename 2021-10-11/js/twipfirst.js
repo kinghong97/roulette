@@ -39,7 +39,7 @@ function uniqmsg(data) {
 function makenumber(data) {
     document.getElementById("numberbox").innerHTML += `<input id="howcheck" class="howcheck" type="checkbox">중복 가능하면 체크</input> <br />`
     for (i of data) {
-        document.getElementById("numberbox").innerHTML +=  `<hr><a class="inputrow"><input id="number" name="number" type="text" alt="${i}" onkeypress='return checkNumber(event)' autocomplete='off'/>${i} <br /></a>`;
+        document.getElementById("numberbox").innerHTML +=  `<hr><a class="inputrow"><input id="number" name="number" type="text" alt="${i}" onkeypress='return checkNumber(event)'/>${i} <br /></a>`;
     }
 }
 
@@ -133,7 +133,11 @@ function sumSum1(data1, data2) {
         createTable(acname[0], i, sortcount, allacc, arr20)
         
     }
+
+    
 }
+const table1 = document.getElementById("table1")
+const table2 = document.getElementById("table2")
 
     // 테이블만들기
 function createTable(data1, data2, data3, data4) {
@@ -187,9 +191,6 @@ reader.onload = function (e) {
     for ( i of datap) {
         roulettes.push(i)
     }
-    makebtn('table1')
-    document.getElementById("button3").classList.add("hidden");
-    document.getElementById("button4").classList.add("hidden");
 };
 
 reader.readAsText(input);
@@ -283,6 +284,47 @@ function fristmsg1(e) {
             sumSum1(uniq(arr50), arr)
 }
 
+
+//테이블을 클립보드에 복사
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function downImg(){
+    html2canvas($("#table1")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 테이블 이미지로 복사하기
+function downImg1(){
+    html2canvas($("#table2")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
 // 날짜
 function dateone(data) {
     const da = uniq(data.split(" - "))
@@ -322,8 +364,8 @@ function clicknone() {
 function clicknone1() {
     document.getElementById("numberboxdiv").classList.add("hidden");
     document.getElementById("submitbtn").classList.add("hidden");
-    document.getElementById("result1").classList.remove("hidden");
-    document.getElementById("result2").classList.remove("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
 }
 
 document.getElementById('btn').addEventListener('click', priceCheck);

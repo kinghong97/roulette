@@ -222,6 +222,66 @@ return jsonArray;
             return tablero.join('')
         }
 
+//테이블을 클립보드에 복사
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function downImg(){
+    html2canvas($("#table1")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 테이블 이미지로 복사하기
+function downImg1(){
+    html2canvas($("#table2")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
+//텍스트 이미지로 복사하기
+function downImg2(){
+    html2canvas($("#text3")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 텍스트 이미지로 복사하기
+function downImg3(){
+    html2canvas($("#text4")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
+
 // 날짜 얻기
 function dateone(data) {
     const da = uniq(data.split(" - "))
@@ -260,20 +320,22 @@ function clickno2() {
 function clickno3() {
     document.getElementById("checkbox").classList.add("hidden");
     document.getElementById("selectbtn1").classList.add("hidden");
-    document.getElementById("result1").classList.remove("hidden");
-    document.getElementById("result2").classList.remove("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
+    document.getElementById("button3").classList.remove("hidden");
+    document.getElementById("button4").classList.remove("hidden");
     document.getElementById("namego").classList.remove("hidden");
     document.getElementById("msggo").classList.remove("hidden");
 }
 
 function nameclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg1()
 }
 function msgclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg2()
 }
 // 메세지 유니크
@@ -358,7 +420,6 @@ function makecheck(data) {
         for ( i of bdata) {
             roulettes.push(i)
         }
-        makebtn('table1')
     };
     
     reader.readAsText(input);

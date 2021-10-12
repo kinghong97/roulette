@@ -138,6 +138,66 @@ for(let j=0; j < header.length; j++){ obj[header[j]] = row1[j]; }
 jsonArray.push(obj); }
 return jsonArray; 
 }
+    
+//테이블을 클립보드에 복사
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function downImg(){
+    html2canvas($("#table1")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 테이블 이미지로 복사하기
+function downImg1(){
+    html2canvas($("#table2")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
+//텍스트 이미지로 복사하기
+function downImg2(){
+    html2canvas($("#text3")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 텍스트 이미지로 복사하기
+function downImg3(){
+    html2canvas($("#text4")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+
 
 // 날짜 얻기
 function dateone(data) {
@@ -177,8 +237,8 @@ function clickfirst() {
 function clickfirst1() {
     document.getElementById("firstbtn1").classList.add("hidden");
     document.getElementById("numberboxdiv").classList.add("hidden");
-    document.getElementById("result1").classList.remove("hidden");
-    document.getElementById("result2").classList.remove("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
 }
 // 메세지 유니크
 function uniqmsg(data) {
@@ -188,7 +248,7 @@ function uniqmsg(data) {
 function makenumber(data) {
     document.getElementById("numberbox").innerHTML += `<input id="howcheck" class="howcheck" type="checkbox">중복 가능하면 체크</input> <br />`
     for (i of data) {
-        document.getElementById("numberbox").innerHTML +=  `<hr><a class="inputrow"><input id="number" name="number" type="text" alt="${i}" onkeypress='return checkNumber(event)' autocomplete='off'/>${i.split(' - ')[1]} <br /></a>`;
+        document.getElementById("numberbox").innerHTML +=  `<hr><a class="inputrow"><input id="number" name="number" type="text" alt="${i}" onkeypress='return checkNumber(event)'/>${i.split(' - ')[1]} <br /></a>`;
     }
 }
 function checkNumber(event) {
@@ -232,9 +292,6 @@ reader.onload = function (e) {
     for (i of bdata ){
         roulettes.push(i)
     }
-    makebtn('table1')
-    document.getElementById("button3").classList.add("hidden");
-    document.getElementById("button4").classList.add("hidden");
 };
 
 reader.readAsText(input);

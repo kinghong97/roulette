@@ -191,6 +191,9 @@ function sumSum(data1, data2) {
 }
 
 
+const table1 = document.getElementById("table1")
+const table2 = document.getElementById("table2")
+
     // 테이블만들기
 function createTable(data1, data2, data3, data4) {
     const tablerow = tabler(data3)
@@ -287,7 +290,6 @@ reader.onload = function (e) {
     for ( i of datap) {
         roulettes.push(i)
     }
-    makebtn('table1')
 };
 
 reader.readAsText(input);
@@ -324,6 +326,47 @@ function pickmsg2() {
       } 
     sumSum(arr100, roulettes)
 
+}
+
+
+//테이블을 클립보드에 복사
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function downImg(){
+    html2canvas($("#table1")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
+}
+//확률 테이블 이미지로 복사하기
+function downImg1(){
+    html2canvas($("#table2")[0]).then(function(canvas){
+    canvas.toBlob(function(blob) { 
+        const item = new ClipboardItem({ "image/png": blob });
+        navigator.clipboard.write([item]); 
+        });
+    });
 }
 
 // 날짜
@@ -364,8 +407,10 @@ function clicknone() {
 function clicknone1() {
     document.getElementById("checkbox").classList.add("hidden");
     document.getElementById("submitbtn").classList.add("hidden");
-    document.getElementById("result1").classList.remove("hidden");
-    document.getElementById("result2").classList.remove("hidden");
+    document.getElementById("button1").classList.remove("hidden");
+    document.getElementById("button2").classList.remove("hidden");
+    document.getElementById("button3").classList.remove("hidden");
+    document.getElementById("button4").classList.remove("hidden");
     document.getElementById("namego").classList.remove("hidden");
     document.getElementById("msggo").classList.remove("hidden");
 }
@@ -374,11 +419,11 @@ document.getElementById('btn').addEventListener('click', priceCheck);
 
 function nameclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg1()
 }
 function msgclick() {
     document.getElementById("table1").innerHTML = ""
-    document.getElementById("table11").innerHTML = ""
+    document.getElementById("table2").innerHTML = ""
     pickmsg2()
 }

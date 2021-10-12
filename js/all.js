@@ -88,4 +88,88 @@ $('#daydate').daterangepicker({
     "opens": "center",
     "drops": "up"
 })
+//버튼 만들기
+function makebtn(data) {
+    document.getElementById("btns1").innerHTML = ""
+    document.getElementById("btns2").innerHTML = ""
+    document.getElementById("btns1").innerHTML += `<button id="button1" class="button" type="button" onclick="copytxt('${data}')">텍스트로 복사</button>`
+    document.getElementById("btns1").innerHTML += `<button id="button2" class="button" type="button" onclick="copyimg('#${data}')">이미지로 복사</button>`
+    document.getElementById("btns2").innerHTML += `<button id="button3" class="button" type="button" onclick="copytxt('${data}1')">텍스트로 복사</button>`
+    document.getElementById("btns2").innerHTML += `<button id="button4" class="button" type="button" onclick="copyimg('#${data}1')">이미지로 복사</button>`
+}
 
+function makenavbar() {
+    document.getElementById("navbardiv").innerHTML = `<nav class="navbar navbar-expand-lg navbar-light fw-bold">
+    <div class="container-fluid">
+      <a class="navbar-brand navpd" href="https://www.kungtool.com">#kungtool</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                투네이션 룰렛 결산하기
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toon">전체 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toonselect">선택 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toonfirst">선착순 결산하기</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                트윕 룰렛 결산하기
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="https://www.kungtool.com/twip">전체 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/twipfirst">선착순 결산하기</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/kinghong97">개발자</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.kungtool.com/blog">블로그</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>`
+}
+makenavbar()
+
+//테이블을 클립보드에 복사
+function copytxt(ell) {
+  var el = document.getElementById(ell)
+  var body = document.body, range, sel;
+  if (document.createRange && window.getSelection) {
+      range = document.createRange();
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      try {
+          range.selectNodeContents(el);
+          sel.addRange(range);
+      } catch (e) {
+          range.selectNode(el);
+          sel.addRange(range);
+      }
+  } else if (body.createTextRange) {
+      range = body.createTextRange();
+      range.moveToElementText(el);
+      range.select();
+  }
+  document.execCommand("Copy");}
+
+//테이블 이미지로 복사하기
+function copyimg(data){
+  html2canvas($(data)[0]).then(function(canvas){
+  canvas.toBlob(function(blob) { 
+      const item = new ClipboardItem({ "image/png": blob });
+      navigator.clipboard.write([item]); 
+      });
+  });
+}
+
+const table1 = document.getElementById("table1")
+const table2 = document.getElementById("table11")
