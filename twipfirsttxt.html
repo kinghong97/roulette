@@ -3,23 +3,24 @@
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="트윕 룰렛 전체 결산하기">
-    <meta name="subject" content="트윕 전체 룰렛">
+    <meta name="title" content="트윕 룰렛 선착순 결산하기(text.ver)">
+    <meta name="subject" content="트윕 선착순 룰렛(text.ver)">
     <meta name="keywords" content="트윕 룰렛, 룰렛, 트윕, 결산, 트윕, 트윕 룰렛, 트윕 룰렛 결산, 트윕 룰렛 결산하기, 트윕 룰렛 정리, 트윕 룰렛 정산, 트위치, 트위치 룰렛, 트위치 룰렛 결산, 트위치 룰렛 정리, 룰렛 결과 정리, 트위치 룰렛 결과 정리, 트윕 룰렛 결과 정리">
     <meta name="author" content="kinghong97">
-    <title>트윕 룰렛 전체 결산하기</title>
+    <title>트윕 룰렛 선착순 결산하기(text.ver)</title>
     <meta name="description" content="쉽게 트윕 룰렛을 결산하고 결과를 복사해보세요." />
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://www.kungtool.com/twip" />
-    <meta property="og:url" content="https://www.kungtool.com/twip" />
+    <link rel="canonical" href="https://www.kungtool.com/twipfirsttxt" />
+    <meta property="og:url" content="https://www.kungtool.com/twipfirsttxt" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="트윕 룰렛 전체 결산하기" />
+    <meta property="og:title" content="트윕 룰렛 선착순 결산하기(text.ver)" />
     <meta property="og:description" content="쉽게 트윕 룰렛을 결산하고 결과를 복사해보세요. 텍스트로 복사하기 또는 이미지로 캡쳐하여 복사할 수 있습니다." />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
     crossorigin="anonymous"></script>
+
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -45,7 +46,7 @@
   </div>
   <div class="center">
   <div class="headheader">
-  <a id="header" onClick="window.location.reload()">트윕 룰렛 전체 결산하기</a>
+  <a id="header" onClick="window.location.reload()">트윕 룰렛 선착순 결산하기(text.ver)</a>
   </div>
 
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
@@ -53,15 +54,16 @@
       <div class="toast-header">
         <img class="rounded me-2">
         <strong class="me-auto">사용 방법</strong>
-        <small>트윕 전체</small>
+        <small>트윕 선착순</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
-         1. 후원관리 - 알림목록 - csv 다운로드<br/>
-         2. csv 버튼 눌러 파일 추가<br/>
-         3. 룰렛 돌린 날짜 지정<br/>
-         4. 룰렛 가격 입력 후 결산하기<br/>
-         5. 룰렛 목록 체크 후 확인<br/>
+        1. 후원관리 - 알림목록 - csv 다운로드<br/>
+        2. csv 버튼 눌러 파일 추가<br/>
+        3. 룰렛 돌린 날짜 지정<br/>
+        4. 룰렛 가격 입력 후 결산하기<br/>
+        5. 중복 가능한지 체크<br/>
+        6. 선착순 할 룰렛 개수 입력 후 확인<br/>
       </div>
     </div>
   </div>
@@ -71,14 +73,14 @@
     <i>CSV</i>
   </div>
 </div>
+<div id="numberboxdiv" class="numberboxdiv hidden">
+  <h2 id="numberboxtext">룰렛의 선착순 개수를 입력해 주세요</h2>
+  <h4 id="numberbox"></h4>
+</div>
 
 <div>
   <h2 id="text1"class="h2text">룰렛 돌린 날짜를 지정해 주세요</h2>
   </div>
-<div id="checkbox" class="checkbox hidden">
-  <h2 id="checktext">룰렛 목록을 체크해주세요</h2>
-  <h4 id="checktext1"></h4>
-</div>
 
   <div>
     <form id="myForm">
@@ -97,8 +99,6 @@
       </div>
       <div class="wrapper3">
         <input id="submitbtn" class= "button" type="submit" onclick="clicknone1()" value=" 결산하기 " />
-        <input id="namego" class="button hidden" type="button" onclick="nameclick()" value="이름 정렬" />
-        <input id="msggo" class="button hidden" type="button" onclick="msgclick()" value="목록 정렬" />
        
       </div>
     </div>
@@ -108,7 +108,7 @@
 </div>
 <div id="result1" class="hidden">
   <div id="btns1" class="wrapper2"></div>
-  <table id="table1" class="table1"></table>
+  <div id="text5" class="text5"></div>
 </div>
 <div class="gapad">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
@@ -126,7 +126,7 @@
 </div>
 <div id="result2" class="hidden">
   <div id="btns2" class="wrapper2"></div>
-  <table id="table11" class="table11"></table>
+  <div id="text55" class="text55"></div>
 </div>
 <div class="bottom">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
@@ -170,7 +170,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
   <script src="js\all.js"></script>
-  <script src="js\twip.js"></script>  
+  <script src="js\twipfirsttxt.js"></script>  
     <script>
     </script>
     

@@ -97,6 +97,15 @@ function makebtn(data) {
     document.getElementById("btns2").innerHTML += `<button id="button3" class="button" type="button" onclick="copytxt('${data}1')">텍스트로 복사</button>`
     document.getElementById("btns2").innerHTML += `<button id="button4" class="button" type="button" onclick="copyimg('#${data}1')">이미지로 복사</button>`
 }
+//버튼 만들기2
+function makebtn2(data) {
+  document.getElementById("btns1").innerHTML = ""
+  document.getElementById("btns2").innerHTML = ""
+  document.getElementById("btns1").innerHTML += `<button id="button1" class="button" type="button" onclick="copytxt('${data}')">텍스트로 복사</button>`
+  document.getElementById("btns1").innerHTML += `<button id="button2" class="button" type="button" onclick="copyimg('#${data}')">이미지로 복사</button>`
+  document.getElementById("btns2").innerHTML += `<button id="button3" class="button" type="button" onclick="copytxt('${data}5')">텍스트로 복사</button>`
+  document.getElementById("btns2").innerHTML += `<button id="button4" class="button" type="button" onclick="copyimg('#${data}5')">이미지로 복사</button>`
+}
 
 function makenavbar() {
     document.getElementById("navbardiv").innerHTML = `<nav class="navbar navbar-expand-lg navbar-light fw-bold">
@@ -112,9 +121,17 @@ function makenavbar() {
                 투네이션 룰렛 결산하기
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">테이블 버전</a></li>
+            <div class="dropdown-divider"></div>
               <li><a class="dropdown-item" href="https://www.kungtool.com/toon">전체 결산하기</a></li>
               <li><a class="dropdown-item" href="https://www.kungtool.com/toonselect">선택 결산하기</a></li>
               <li><a class="dropdown-item" href="https://www.kungtool.com/toonfirst">선착순 결산하기</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="#">텍스트 버전</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toontxt">전체 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toonselecttxt">선택 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/toonfirsttxt">선착순 결산하기</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -122,8 +139,15 @@ function makenavbar() {
                 트윕 룰렛 결산하기
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">테이블 버전</a></li>
+            <div class="dropdown-divider"></div>
               <li><a class="dropdown-item" href="https://www.kungtool.com/twip">전체 결산하기</a></li>
               <li><a class="dropdown-item" href="https://www.kungtool.com/twipfirst">선착순 결산하기</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="#">텍스트 버전</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/twiptxt">전체 결산하기</a></li>
+              <li><a class="dropdown-item" href="https://www.kungtool.com/twipfirsttxt">선착순 결산하기</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -173,3 +197,16 @@ function copyimg(data){
 
 const table1 = document.getElementById("table1")
 const table2 = document.getElementById("table11")
+const retext1 = document.getElementById("text5")
+const retext2 = document.getElementById("text55")
+
+function nameclick() {
+  retext1.innerHTML = ""
+  retext2.innerHTML = ""
+  pickmsg1()
+}
+function msgclick() {
+  retext1.innerHTML = ""
+  retext2.innerHTML = ""
+  pickmsg2()
+}

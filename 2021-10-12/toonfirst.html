@@ -29,25 +29,10 @@
 </head>
 <body>
   <div id="navbardiv" class="navbardiv"></div>
-  <div class="body">
-  <div class="side">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
-     crossorigin="anonymous"></script>
-<!-- 사이드 광고 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7765972341452054"
-     data-ad-slot="4066058971"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  </div>
-  <div class="center">
   <div class="headheader">
   <a id="header" onClick="window.location.reload()">투네이션 룰렛 선착순 결산하기</a>
   </div>
+
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
@@ -66,29 +51,31 @@
       </div>
     </div>
   </div>
-
 <div id="csv" class="wrapper">
   <div  class="file-upload">
     <input type="file" id="csvFile" accept=".csv" />
     <i>CSV</i>
   </div>
 </div>
-<div id="numberboxdiv" class="numberboxdiv hidden">
-  <h2 id="numberboxtext">룰렛의 선착순 개수를 입력해 주세요</h2>
-  <h4 id="numberbox"></h4>
-</div>
 <div>
   <h2 id="text1"class="h2text">룰렛 돌린 날짜를 지정해 주세요</h2>
   </div>
+  <div id="toppointer" class="back-to-top pointer" onclick="scrollToTop();return false;">
+    <img class="toppointer" src="https://raw.githubusercontent.com/kinghong97/kinghong97.github.io/e2cebdb7196c8bf9155c4674ab9ba460a49d0bdd/assets/css/sss.svg">
+  </div>
+  <div id="numberboxdiv" class="numberboxdiv hidden">
+    <h2 id="numberboxtext">룰렛의 선착순 개수를 입력해 주세요</h2>
+    <h4 id="numberbox"></h4>
+  </div>
   <div>
     <form id="myForm">
-      <div id="text2" class="wrapper4">
+      <div id="text2" class="wrapper4" title="룰렛 돌린 날짜를 지정해 주세요">
         <input type="text" name="daterange" id="daydate" />
       </div>
     </div>
     <div>
       <div class="wrapper2">
-      <input id="nametext" placeholder="룰렛 이름을 입력해 주세요" autocomplete='off'>
+      <input id="nametext" placeholder="룰렛 이름을 입력해 주세요" autocomplete='off' >
     </div>
     <div>
       <div class="wrapper3">
@@ -99,62 +86,20 @@
     </div>
     </form>
   </div>
-  <div id="toppointer" class="back-to-top pointer" onclick="scrollToTop();return false;">
-  <img class="toppointer" src="https://raw.githubusercontent.com/kinghong97/kinghong97.github.io/e2cebdb7196c8bf9155c4674ab9ba460a49d0bdd/assets/css/sss.svg">
 </div>
 <div id="result1" class="hidden">
-    <div id="btns1" class="wrapper2"></div>
-    <table id="table1" class="table1"></table>
-</div>
-<div class="gapad">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
-     crossorigin="anonymous"></script>
-<!-- 틈새 광고 2 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7765972341452054"
-     data-ad-slot="3581159038"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+  <div id="btns1" class="wrapper2"></div>
+  <table id="table1" class="table1"></table>
+  <a id="text5" class="text5"></a>
 </div>
 <div id="result2" class="hidden">
-    <div id="btns2" class="wrapper2"></div>
-    <table id="table11" class="table11"></table>
-  </div>
+  <div id="btns2" class="wrapper2"></div>
+  <table id="table11" class="table11"></table>
+  <a id="text55" class="text55"></a>
+</div>
 <div class="bottom">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
-     crossorigin="anonymous"></script>
-<!-- 틈새 광고 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7765972341452054"
-     data-ad-slot="7622160604"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  <a class="copyright">Copyright © 2021 kinghong97
-  </a>
-</div>
-</div>
-<div class="side">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765972341452054"
-     crossorigin="anonymous"></script>
-<!-- 사이드 광고 2 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7765972341452054"
-     data-ad-slot="9682359497"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
+<a class="copyright">Copyright © 2021 kinghong97
+</a>
 </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
