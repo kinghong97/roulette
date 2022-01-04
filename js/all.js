@@ -41,14 +41,21 @@ scrollTop 은 윈도우에서 스크롤의 위치가 가장 상위에 있다는 
 let today = new Date();   
 
 let year = String(today.getFullYear()).padStart(2, "0"); // 년도
-let month = String(today.getMonth() +1).padStart(2, "0");  // 월
-let month1 = String(today.getMonth()).padStart(2, "0");  // 월-1
+let year1 = String(today.getFullYear()).padStart(2, "0");
+let month = String(today.getMonth()).padStart(2, "0");  // 월
+let month1 = String(today.getMonth() - 1).padStart(2, "0");  // 월-1
 let date = String(today.getDate()).padStart(2, "0");  // 날짜
 
+if (month1 == `-1`){
+  month1 = `12`
+  year1 = String(today.getFullYear() - 1).padStart(2, "0");
+  month = String(today.getMonth() + 1).padStart(2, "0");
+}
 
 
 // 캘린더 함수 
 $('#daydate').daterangepicker({
+  
     "locale": {
         "format": "YYYY/MM/DD",
         "separator": " - ",
@@ -83,7 +90,7 @@ $('#daydate').daterangepicker({
         ],
         "firstDay": 1
     },
-    "startDate": `${year}/${month1}/${date}`,
+    "startDate": `${year1}/${month1}/${date}`,
     "endDate": `${year}/${month}/${date}`,
     "opens": "center",
     "drops": "up"

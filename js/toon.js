@@ -362,4 +362,3 @@ reader.onload = function (e) {
 }
 reader.readAsText(input);
 };
-

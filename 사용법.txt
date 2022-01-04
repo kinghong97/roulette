@@ -3,7 +3,7 @@
 
 
 
-투네이션 https://troulette.netlify.app/
+투네이션 https://www.kungtool.com/toon
 
 후원관리 - 알림목록 - csv 다운로드를 눌러 나온 파일을 넣고
 
@@ -12,7 +12,7 @@
 룰렛 이름을 넣고 결산하기를 누른다
 
 
-트윕 https://troulette.netlify.app/twip
+트윕 https://www.kungtool.com/twip
 
 후원관리 - 후원목록 -  csv 다운로드를 눌러 나온 파일을 넣고
 
