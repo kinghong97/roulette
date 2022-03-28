@@ -45,16 +45,19 @@ let year1 = String(today.getFullYear()).padStart(2, "0");
 let month = String(today.getMonth() + 1).padStart(2, "0");  // 월
 let month1 = String(today.getMonth()).padStart(2, "0");  // 월-1
 let date = String(today.getDate()).padStart(2, "0");  // 날짜
+let date1 = String(today.getDate()).padStart(2, "0");  // 날짜
 
 if (month1 == `00`){
   month1 = `12`
   year1 = String(today.getFullYear() - 1).padStart(2, "0");
   // month = String(today.getMonth() + 1).padStart(2, "0");
+} else if (month1 == '02' && date1 >= '28'){
+  date1 = '28'
+} else if (month == '02' && date >= '28'){
+  date = '28'
 }
-
 // 캘린더 함수 
 $('#daydate').daterangepicker({
-  
     "locale": {
         "format": "YYYY/MM/DD",
         "separator": " - ",
@@ -89,7 +92,7 @@ $('#daydate').daterangepicker({
         ],
         "firstDay": 1
     },
-    "startDate": `${year1}/${month1}/${date}`,
+    "startDate": `${year1}/${month1}/${date1}`,
     "endDate": `${year}/${month}/${date}`,
     "opens": "center",
     "drops": "up"
